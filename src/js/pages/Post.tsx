@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Loading from '../components/Loading'
+import { deletePost } from '../actions/postActions'
 import { connect } from 'react-redux'
 
 const Post = (props: any): JSX.Element => {
@@ -56,7 +57,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deletePost: (id) => {
-      dispatch({ type: 'DELETE_POST', id: id })
+      dispatch(deletePost(id))
     },
   }
 }
