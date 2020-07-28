@@ -1,3 +1,10 @@
-| Statements | Branches | Functions | Lines |
-| -----------|----------|-----------|-------|
-| ![Statements](#statements# "Make me better!") | ![Branches](#branches# "Make me better!") | ![Functions](#functions# "Make me better!") | ![Lines](#lines# "Make me better!") |
+# blog
+Link: https://thesamnicholls.github.io/blog/
+
+This is a blog app.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
