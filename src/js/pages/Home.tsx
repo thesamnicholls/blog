@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react'
+import Button from '../components/Button'
+import Card from '../components/Card'
+import Loading from '../components/Loading'
+import { connect } from 'react-redux'
 
-const Home = (): JSX.Element => {
-  const [posts, setPosts] = useState<any[]>([])
+const Home = (props): JSX.Element => {
+  const [visible, setVisible] = useState(5)
+  const [render, setRender] = useState(false)
+  const { posts } = props
 
   useEffect(() => {
     // Delay the useEffect by 1000ms
     const timeout = setTimeout(() => {
-      // Fetch the posts data from the API
-      fetch('https://jsonplaceholder.typicode.com/posts/')
-        // Store the response
-        .then((response) => response.json())
-        // Only return the first 10 results
-        .then((data) => setPosts(data.slice(0, 10)))
+      // Set the render state to true
+      setRender(true)
     }, 1000)
     // Clear the timer when it's done
     return () => clearTimeout(timeout)
@@ -20,21 +22,37 @@ const Home = (): JSX.Element => {
   return (
     <div className='l-page'>
       <h1 className='l-page__title'>Blog</h1>
-      {posts.length > 0 ? (
-        <div className='l-grid'>
-          {posts.map((post) => (
-            <div className='c-card' key={post.id}>
-              <p className='c-card__title'>{post.title}</p>
-              <p className='c-card__description'>{post.body}</p>
+      {render ? (
+        <div>
+          <div className='row'>
+            <div className='l-grid'>
+              {posts.slice(0, visible).map((post) => (
+                <Card
+                  key={post.id}
+                  id={post.id}
+                  title={post.title}
+                  body={post.body}
+                />
+              ))}
             </div>
-          ))}
+          </div>
+          <div className='o-row'>
+            {visible < posts.length && (
+              <Button title='Load More' setVisible={setVisible} />
+            )}
+          </div>
         </div>
       ) : (
-        // TODO: Add in Loading Spinner
-        <h1>Loading</h1>
+        <Loading />
       )}
     </div>
   )
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts,
+  }
+}
+
+export default connect(mapStateToProps)(Home)

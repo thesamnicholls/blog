@@ -10,10 +10,12 @@ $this: 'l-page' !global;
 
   &__title {
     font-family: $font-regular;
+    text-align: center;
   }
 
   &__description {
     font-family: $font-regular;
     line-height: 1.4;
+    text-align: center;
   }
 }
