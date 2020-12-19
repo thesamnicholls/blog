@@ -64,22 +64,25 @@ const initialState = {
   ],
 }
 
-const rootReducer = (state = initialState, action) => {
-  // Only do this is the action type is DELETE_POST
+export const DELETE_POST = 'DELETE_POST'
+
+export interface DeletePostAction {
+  id: string
+  type: typeof DELETE_POST
+}
+
+export default function rootReducer(
+  state = initialState,
+  action: DeletePostAction,
+) {
   if (action.type === 'DELETE_POST') {
-    // Filtering through all of the posts
     let newPosts = state.posts.filter((post) => {
-      // Return if the action id doesn't equal the post id
       return action.id !== post.id
     })
     return {
-      // Spreading the existing state
       ...state,
-      // Overriding exisiting state and adding in updated posts object
       posts: newPosts,
     }
   }
   return state
 }
-
-export default rootReducer

@@ -1,32 +1,46 @@
 import React, { useState, useEffect } from 'react'
-import Button from '../components/Button'
-import Card from '../components/Card'
-import Loading from '../components/Loading'
 import { connect } from 'react-redux'
+import Body from '../components/Body/index'
+import Title from '../components/Title/index'
+import Row from '../components/Row/index'
+import Grid from '../components/Grid/index'
+import Button from '../components/Button/index'
+import Card from '../components/Card/index'
+import Loading from '../components/Loading/index'
 
-const Home = (props): JSX.Element => {
+export interface Posts {
+  id: number
+  title: string
+  body: string
+}
+
+export interface HomeProps {
+  posts: Array<Posts>
+}
+
+const Home = ({ posts }: HomeProps): JSX.Element => {
   const [visible, setVisible] = useState(5)
   const [render, setRender] = useState(false)
-  const { posts } = props
 
   useEffect(() => {
-    // Delay the useEffect by 1000ms
     const timeout = setTimeout(() => {
-      // Set the render state to true
       setRender(true)
     }, 1000)
-    // Clear the timer when it's done
     return () => clearTimeout(timeout)
   }, [])
 
+  const loadMore = () => {
+    setVisible((prevState: number) => prevState + 5)
+  }
+
   return (
-    <div className='l-page'>
-      <h1 className='l-page__title'>Blog</h1>
+    <Body>
+      <Title text='Blog' />
       {render ? (
-        <div>
-          <div className='row'>
-            <div className='l-grid'>
-              {posts.slice(0, visible).map((post) => (
+        <>
+          <Row>
+            <Grid>
+              {posts.slice(0, visible).map((post: Posts) => (
                 <Card
                   key={post.id}
                   id={post.id}
@@ -34,22 +48,22 @@ const Home = (props): JSX.Element => {
                   body={post.body}
                 />
               ))}
-            </div>
-          </div>
-          <div className='o-row'>
+            </Grid>
+          </Row>
+          <Row>
             {visible < posts.length && (
-              <Button title='Load More' setVisible={setVisible} />
+              <Button title='Load More' onClick={loadMore} />
             )}
-          </div>
-        </div>
+          </Row>
+        </>
       ) : (
         <Loading />
       )}
-    </div>
+    </Body>
   )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: { posts: Array<Posts> }) => {
   return {
     posts: state.posts,
   }
