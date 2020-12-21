@@ -33,18 +33,18 @@ export const NavigationListItem = styled.li`
   &:not(:last-child) {
     margin-right: 10px;
   }
-`
-
-export const NavigationLink = styled.a`
-  font-size: 18px;
-  color: ${WHITE};
-  text-decoration: none;
-  padding: 10px;
-  ${mediaQueries('ms')`
+  
+  a {
+    font-size: 18px;
+    color: ${WHITE};
+    text-decoration: none;
+    padding: 10px;
+    ${mediaQueries('ms')`
     font-size: 20px;
   `}
 
-  &:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `

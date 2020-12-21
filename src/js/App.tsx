@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { normalize } from 'styled-normalize'
 import Navigation from './components/Navigation/index'
@@ -17,18 +17,18 @@ export default function App() {
   `
 
   return (
-    <BrowserRouter>
+    <HashRouter basename='/'>
       <Navigation />
       <Switch>
-        <Route exact path='/blog' component={Home} />
-        <Route exact path='/blog/about' component={About} />
-        <Route exact path='/blog/:post_id' component={Post} />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/about' component={About} />
+        <Route exact path='/:post_id' component={Post} />
       </Switch>
       <GlobalStyle />
       <link
         href='https://fonts.googleapis.com/css?family=Poppins&display=swap'
         rel='stylesheet'
       />
-    </BrowserRouter>
+    </HashRouter>
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import * as Styles from './styles'
 
 export interface CardProps {
@@ -10,12 +11,9 @@ export interface CardProps {
 export default function Card({ title, body, id }: CardProps) {
   return (
     <Styles.Card>
-      <Styles.CardLink
-        href={'/blog/' + id}
-        title='Click here to go to view the post'
-      >
+      <Link to={'/' + id} title='Click here to go to view the post'>
         <Styles.CardTitle>{title}</Styles.CardTitle>
-      </Styles.CardLink>
+      </Link>
       <Styles.CardDescription>{body}</Styles.CardDescription>
     </Styles.Card>
   )

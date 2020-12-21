@@ -30,7 +30,7 @@ const Post = ({ post, deletePost, history }: PostProps): JSX.Element => {
 
   const handleClick = () => {
     deletePost(post!.id)
-    history.push('/blog')
+    history.push('/')
   }
 
   useEffect(() => {

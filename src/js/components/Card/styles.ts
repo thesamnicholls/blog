@@ -5,14 +5,14 @@ export const Card = styled.div`
   box-shadow: 0px 3px 15px rgba(${BLACK}, 0.5);
   width: 100%;
   padding: 20px;
-`
 
-export const CardLink = styled.a`
-  color: ${BLACK};
-  text-decoration: none;
+  a {
+    color: ${BLACK};
+    text-decoration: none;
 
-  &:hover {
-    text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 

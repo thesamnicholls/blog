@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import * as Styles from './styles'
 
 export default function Navigation() {
@@ -8,17 +9,10 @@ export default function Navigation() {
         <Styles.NavigationTitle>Blog</Styles.NavigationTitle>
         <Styles.NavigationList>
           <Styles.NavigationListItem>
-            <Styles.NavigationLink href='/blog' title='Click here to go home'>
-              Home
-            </Styles.NavigationLink>
+            <Link to='/'>Home</Link>
           </Styles.NavigationListItem>
           <Styles.NavigationListItem>
-            <Styles.NavigationLink
-              href='/blog/about'
-              title='Click here to go to the about page'
-            >
-              About
-            </Styles.NavigationLink>
+          <Link to='/about'>About</Link>
           </Styles.NavigationListItem>
         </Styles.NavigationList>
       </Styles.NavigationWrapper>
