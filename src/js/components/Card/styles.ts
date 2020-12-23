@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { BLACK } from '../../base/colours'
 
 export const Card = styled.div`
-  box-shadow: 0px 3px 15px rgba(${BLACK}, 0.5);
+  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.5);
   width: 100%;
   padding: 20px;
 
